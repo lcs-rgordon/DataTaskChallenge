@@ -15,19 +15,8 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            
-            NavigationView {
-                VStack {
-                    Text("**Age:** \(user.age)")
-                }
-                .navigationTitle(user.name)
-            }
-            .tabItem {
-                Image(systemName: "person")
-                Text("User")
-            }
-            
-            NavigationView {
+            VStack {
+                HeaderView(name: user.name, age: user.age)
                 List(messages) { message in
                     HStack {
                         Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
@@ -40,14 +29,14 @@ struct ContentView: View {
                         }
                     }
                 }
-                .navigationTitle(user.name)
             }
             .tabItem {
                 Image(systemName: "message.fill")
                 Text("Messages")
             }
             
-            NavigationView {
+            VStack {
+                HeaderView(name: user.name, age: user.age)
                 List(messages.filter({ element in
                     return favourites.contains(element.id)
                 })) { message in
@@ -62,13 +51,13 @@ struct ContentView: View {
                         }
                     }
                 }
-                .navigationTitle(user.name)
+
             }
             .tabItem {
                 Image(systemName: "star.fill")
                 Text("Favourites")
             }
-
+            
         }
         .task {
             do {
@@ -94,8 +83,8 @@ struct ContentView: View {
     
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
