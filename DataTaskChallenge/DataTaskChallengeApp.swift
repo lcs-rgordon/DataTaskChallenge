@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct DataTaskChallengeApp: App {
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
