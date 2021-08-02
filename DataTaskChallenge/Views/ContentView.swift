@@ -29,11 +29,15 @@ struct ContentView: View {
             
             NavigationView {
                 List(messages) { message in
-                    VStack(alignment: .leading) {
-                        Text(message.message)
-                        Text(message.from)
-                            .font(.caption)
-                            .bold()
+                    HStack {
+                        Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
+                            .foregroundColor(Color.yellow)
+                        VStack(alignment: .leading) {
+                            Text(message.message)
+                            Text(message.from)
+                                .font(.caption)
+                                .bold()
+                        }
                     }
                 }
                 .navigationTitle(user.name)
