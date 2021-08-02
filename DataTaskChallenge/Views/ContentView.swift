@@ -47,6 +47,28 @@ struct ContentView: View {
                 Text("Messages")
             }
             
+            NavigationView {
+                List(messages.filter({ element in
+                    return favourites.contains(element.id)
+                })) { message in
+                    HStack {
+                        Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
+                            .foregroundColor(Color.yellow)
+                        VStack(alignment: .leading) {
+                            Text(message.message)
+                            Text(message.from)
+                                .font(.caption)
+                                .bold()
+                        }
+                    }
+                }
+                .navigationTitle(user.name)
+            }
+            .tabItem {
+                Image(systemName: "star.fill")
+                Text("Favourites")
+            }
+
         }
         .task {
             do {
