@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-struct MessageListView: View {
+struct FavouritesListView: View {
     
     var messagesBySender: [String: [Message]] = ["":[]]
     var favourites: Favourites = []
-    var favouritesOnly: Bool = false
     
     var body: some View {
         List {
@@ -20,11 +19,7 @@ struct MessageListView: View {
                 
                 // Get messages from this sender
                 if let messagesFromSender = messagesBySender[person]!.filter({ element in
-                    if favouritesOnly {
-                        return favourites.contains(element.id)
-                    } else {
-                        return true
-                    }
+                    return favourites.contains(element.id)
                 }) {
                     
                     if !messagesFromSender.isEmpty {
@@ -44,7 +39,12 @@ struct MessageListView: View {
                                 }
 
                             }
-                            
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.primary.colorInvert())
+                            .padding()
+                            .background(Color.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+
                         }
 
                     }
@@ -54,12 +54,13 @@ struct MessageListView: View {
                 
             }
         }
+        .listStyle(PlainListStyle())
 
     }
 }
 
-//struct MessageListView_Previews: PreviewProvider {
+//struct FavouritesListView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        MessageListView()
+//        FavouritesListView()
 //    }
 //}

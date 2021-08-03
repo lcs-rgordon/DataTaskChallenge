@@ -14,11 +14,16 @@ struct HeaderView: View {
     
     var body: some View {
         HStack {
+            Image("Paul-Hudson")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .scaledToFill()
+                .clipShape(Circle())
             VStack(alignment: .leading) {
                 Text(name)
-                    .font(.largeTitle)
-                    .bold()
-                Text("**Age:** \(age)")
+                    .font(.subheadline)
+                Text("Age: \(age)")
+                    .font(.caption)
             }
             Spacer()
         }

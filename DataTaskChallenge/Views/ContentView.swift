@@ -16,22 +16,50 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            VStack {
-                HeaderView(name: user.name, age: user.age)
-                MessageListView(messagesBySender: messagesBySender,
-                                favourites: favourites)
+            NavigationView {
                 
+                VStack {
+                    HeaderView(name: user.name, age: user.age)
+                    List(messages.filter({ element in
+                        return true
+                    })) { message in
+                        VStack(alignment: .leading) {
+                            Text(message.from)
+                                .font(.caption)
+                                .bold()
+                            Spacer()
+                            HStack {
+                                Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
+                                    .foregroundColor(Color.yellow)
+                                VStack(alignment: .leading) {
+                                    Text(message.message)
+                                }
+                            }
+                        }
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.primary.colorInvert())
+                        .padding()
+                        .background(Color.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                    }
+                    .listStyle(PlainListStyle())
+                    
+                }
+                .navigationTitle("Group Chat")
             }
             .tabItem {
                 Image(systemName: "message.fill")
                 Text("Messages")
             }
             
-            VStack {
-                HeaderView(name: user.name, age: user.age)
-                MessageListView(messagesBySender: messagesBySender,
-                                favourites: favourites,
-                                favouritesOnly: true)
+            NavigationView {
+                
+                VStack {
+                    HeaderView(name: user.name, age: user.age)
+                    FavouritesListView(messagesBySender: messagesBySender,
+                                       favourites: favourites)
+                }
+                .navigationTitle("Favourites")
 
             }
             .tabItem {
