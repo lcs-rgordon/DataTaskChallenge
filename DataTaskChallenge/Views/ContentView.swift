@@ -21,7 +21,7 @@ struct ContentView: View {
                 VStack {
                     HeaderView(name: user.name, age: user.age)
                     GroupChatListView(messages: messages,
-                                      favourites: favourites)
+                                      favourites: $favourites)
                     
                 }
                 .navigationTitle("Group Chat")
@@ -36,7 +36,7 @@ struct ContentView: View {
                 VStack {
                     HeaderView(name: user.name, age: user.age)
                     FavouritesListView(messagesBySender: messagesBySender,
-                                       favourites: favourites)
+                                       favourites: $favourites)
                 }
                 .navigationTitle("Favourites")
 

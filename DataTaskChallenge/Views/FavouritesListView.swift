@@ -10,7 +10,7 @@ import SwiftUI
 struct FavouritesListView: View {
     
     var messagesBySender: [String: [Message]] = ["":[]]
-    var favourites: Favourites = []
+    @Binding var favourites: Favourites
     
     var body: some View {
         List {
@@ -31,8 +31,10 @@ struct FavouritesListView: View {
                             ForEach(messagesFromSender) { message in
                                 
                                 HStack {
-                                    Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
-                                        .foregroundColor(Color.yellow)
+                                    
+                                    FavouritesButtonView(message: message,
+                                                         favourites: $favourites)
+                                    
                                     VStack(alignment: .leading) {
                                         Text(message.message)
                                     }

@@ -10,7 +10,7 @@ import SwiftUI
 struct GroupChatListView: View {
     
     var messages: [Message] = []
-    var favourites: Favourites = []
+    @Binding var favourites: Favourites
     
     var body: some View {
         
@@ -23,8 +23,10 @@ struct GroupChatListView: View {
                     .bold()
                 Spacer()
                 HStack {
-                    Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
-                        .foregroundColor(Color.yellow)
+                    
+                    FavouritesButtonView(message: message,
+                                         favourites: $favourites)
+                    
                     VStack(alignment: .leading) {
                         Text(message.message)
                     }
@@ -40,8 +42,8 @@ struct GroupChatListView: View {
     }
 }
 
-struct GroupChatListView_Previews: PreviewProvider {
-    static var previews: some View {
-        GroupChatListView()
-    }
-}
+//struct GroupChatListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GroupChatListView()
+//    }
+//}
