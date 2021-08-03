@@ -9,17 +9,17 @@ import SwiftUI
 
 struct MessageListView: View {
     
-    var messagesByPerson: [String: [Message]] = ["":[]]
+    var messagesBySender: [String: [Message]] = ["":[]]
     var favourites: Favourites = []
     var favouritesOnly: Bool = false
     
     var body: some View {
         List {
-            // Iterate over all the keys (each user)
-            ForEach(messagesByPerson.keys.sorted(), id:\.self) { person in
+            // Iterate over all the keys (each sender)
+            ForEach(messagesBySender.keys.sorted(), id:\.self) { person in
                 
-                // Get messages from this person
-                if let messagesFromPerson = messagesByPerson[person]!.filter({ element in
+                // Get messages from this sender
+                if let messagesFromSender = messagesBySender[person]!.filter({ element in
                     if favouritesOnly {
                         return favourites.contains(element.id)
                     } else {
@@ -27,13 +27,13 @@ struct MessageListView: View {
                     }
                 }) {
                     
-                    if !messagesFromPerson.isEmpty {
+                    if !messagesFromSender.isEmpty {
                         
-                        // Show a header with the person's name
+                        // Show a header with the sender's name
                         Section(header: Text(person)) {
                             
-                            // Show all messages from this person
-                            ForEach(messagesFromPerson) { message in
+                            // Show all messages from this sender
+                            ForEach(messagesFromSender) { message in
                                 
                                 HStack {
                                     Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")

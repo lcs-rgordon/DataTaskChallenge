@@ -11,14 +11,14 @@ struct ContentView: View {
     
     @State private var user: User = User(id: UUID(), name: "Patrick Stewart", age: 81)
     @State private var messages: [Message] = []
-    @State private var messagesByPerson: [String: [Message]] = ["":[]]
+    @State private var messagesBySender: [String: [Message]] = ["":[]]
     @State private var favourites: Favourites = []
     
     var body: some View {
         TabView {
             VStack {
                 HeaderView(name: user.name, age: user.age)
-                MessageListView(messagesByPerson: messagesByPerson,
+                MessageListView(messagesBySender: messagesBySender,
                                 favourites: favourites)
                 
             }
@@ -29,7 +29,7 @@ struct ContentView: View {
             
             VStack {
                 HeaderView(name: user.name, age: user.age)
-                MessageListView(messagesByPerson: messagesByPerson,
+                MessageListView(messagesBySender: messagesBySender,
                                 favourites: favourites,
                                 favouritesOnly: true)
 
@@ -58,14 +58,14 @@ struct ContentView: View {
                 messages = try await messagesData
                 print("There are \(messages.count) messages.")
 
-                // Now group messages by user
+                // Now group messages by sender
                 let unsortedMessages = messages
-                let messagesByPerson = Dictionary(grouping: unsortedMessages, by: { message in
+                let messagesBySender = Dictionary(grouping: unsortedMessages, by: { message in
                     message.from
                 })
-                self.messagesByPerson = messagesByPerson
+                self.messagesBySender = messagesBySender
                 print("Messages, grouped by person who sent them:")
-                print(String(describing: messagesByPerson))
+                print(String(describing: messagesBySender))
                 
                 // Wait for favourites data
                 favourites = try await favouritesData
