@@ -9,9 +9,8 @@ import SwiftUI
 
 struct HeaderView: View {
     
-    var name: String
-    var age: Int
-    
+    @EnvironmentObject private var dataProvider: DataProvider
+
     var body: some View {
         HStack {
             Image("Paul-Hudson")
@@ -20,9 +19,9 @@ struct HeaderView: View {
                 .scaledToFill()
                 .clipShape(Circle())
             VStack(alignment: .leading) {
-                Text(name)
+                Text(dataProvider.user.name)
                     .font(.subheadline)
-                Text("Age: \(age)")
+                Text("Age: \(dataProvider.user.age)")
                     .font(.caption)
             }
             Spacer()
@@ -31,8 +30,8 @@ struct HeaderView: View {
     }
 }
 
-struct Headerview_Previews: PreviewProvider {
-    static var previews: some View {
-        HeaderView(name: "Patrick Stewart", age: 81)
-    }
-}
+//struct Headerview_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HeaderView(name: "Patrick Stewart", age: 81)
+//    }
+//}

@@ -9,17 +9,16 @@ import SwiftUI
 
 struct FavouritesListView: View {
     
-    var messagesBySender: [String: [Message]] = ["":[]]
-    @Binding var favourites: Favourites
-    
+    @EnvironmentObject private var dataProvider: DataProvider
+
     var body: some View {
         List {
             // Iterate over all the keys (each sender)
-            ForEach(messagesBySender.keys.sorted(), id:\.self) { person in
+            ForEach(dataProvider.messagesBySender.keys.sorted(), id:\.self) { person in
                 
                 // Get messages from this sender
-                if let messagesFromSender = messagesBySender[person]!.filter({ element in
-                    return favourites.contains(element.id)
+                if let messagesFromSender = dataProvider.messagesBySender[person]!.filter({ element in
+                    return dataProvider.favourites.contains(element.id)
                 }) {
                     
                     if !messagesFromSender.isEmpty {
@@ -32,8 +31,7 @@ struct FavouritesListView: View {
                                 
                                 HStack {
                                     
-                                    FavouritesButtonView(message: message,
-                                                         favourites: $favourites)
+                                    FavouritesButtonView(message: message)
                                     
                                     VStack(alignment: .leading) {
                                         Text(message.message)

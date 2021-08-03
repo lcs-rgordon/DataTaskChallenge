@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		812192FD26B8F34F001C66D2 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812192FC26B8F34F001C66D2 /* DataProvider.swift */; };
 		81A5716826B86F8B00AA4C40 /* DataTaskChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5716726B86F8B00AA4C40 /* DataTaskChallengeApp.swift */; };
 		81A5716A26B86F8B00AA4C40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5716926B86F8B00AA4C40 /* ContentView.swift */; };
 		81A5716C26B86F8D00AA4C40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81A5716B26B86F8D00AA4C40 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		812192FC26B8F34F001C66D2 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		81A5716426B86F8B00AA4C40 /* DataTaskChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataTaskChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A5716726B86F8B00AA4C40 /* DataTaskChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskChallengeApp.swift; sourceTree = "<group>"; };
 		81A5716926B86F8B00AA4C40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				81A5717C26B8706800AA4C40 /* User.swift */,
 				81A5717E26B8709200AA4C40 /* Message.swift */,
 				81A5718026B870C000AA4C40 /* Favourites.swift */,
+				812192FC26B8F34F001C66D2 /* DataProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				81A5716A26B86F8B00AA4C40 /* ContentView.swift in Sources */,
 				81A5716826B86F8B00AA4C40 /* DataTaskChallengeApp.swift in Sources */,
 				81A5718526B8D3E500AA4C40 /* FavouritesListView.swift in Sources */,
+				812192FD26B8F34F001C66D2 /* DataProvider.swift in Sources */,
 				81A5717F26B8709200AA4C40 /* Message.swift in Sources */,
 				81A5717D26B8706800AA4C40 /* User.swift in Sources */,
 				81A5717B26B8703400AA4C40 /* Helper.swift in Sources */,

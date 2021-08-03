@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct GroupChatListView: View {
-    
-    var messages: [Message] = []
-    @Binding var favourites: Favourites
+
+    @EnvironmentObject private var dataProvider: DataProvider
     
     var body: some View {
         
-        List(messages.filter({ element in
+        List(dataProvider.messages.filter({ element in
             return true
         })) { message in
             VStack(alignment: .leading) {
@@ -24,8 +23,7 @@ struct GroupChatListView: View {
                 Spacer()
                 HStack {
                     
-                    FavouritesButtonView(message: message,
-                                         favourites: $favourites)
+                    FavouritesButtonView(message: message)
                     
                     VStack(alignment: .leading) {
                         Text(message.message)

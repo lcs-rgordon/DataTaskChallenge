@@ -10,9 +10,12 @@ import SwiftUI
 @main
 struct DataTaskChallengeApp: App {
     
+    @StateObject private var dataProvider = DataProvider()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(dataProvider)
         }
     }
 }
