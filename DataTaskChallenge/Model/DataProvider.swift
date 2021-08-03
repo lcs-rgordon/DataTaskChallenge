@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 class DataProvider: ObservableObject {
     
     @Published var user: User = User(id: UUID(), name: "Patrick Stewart", age: 81)
