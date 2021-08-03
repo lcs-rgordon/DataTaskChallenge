@@ -16,6 +16,7 @@
 		81A5717F26B8709200AA4C40 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5717E26B8709200AA4C40 /* Message.swift */; };
 		81A5718126B870C100AA4C40 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5718026B870C000AA4C40 /* Favourites.swift */; };
 		81A5718326B8B41400AA4C40 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5718226B8B41400AA4C40 /* HeaderView.swift */; };
+		81A5718526B8D3E500AA4C40 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5718426B8D3E500AA4C40 /* MessageListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		81A5717E26B8709200AA4C40 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		81A5718026B870C000AA4C40 /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		81A5718226B8B41400AA4C40 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		81A5718426B8D3E500AA4C40 /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				81A5716926B86F8B00AA4C40 /* ContentView.swift */,
 				81A5718226B8B41400AA4C40 /* HeaderView.swift */,
+				81A5718426B8D3E500AA4C40 /* MessageListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				81A5718126B870C100AA4C40 /* Favourites.swift in Sources */,
 				81A5716A26B86F8B00AA4C40 /* ContentView.swift in Sources */,
 				81A5716826B86F8B00AA4C40 /* DataTaskChallengeApp.swift in Sources */,
+				81A5718526B8D3E500AA4C40 /* MessageListView.swift in Sources */,
 				81A5717F26B8709200AA4C40 /* Message.swift in Sources */,
 				81A5717D26B8706800AA4C40 /* User.swift in Sources */,
 				81A5717B26B8703400AA4C40 /* Helper.swift in Sources */,

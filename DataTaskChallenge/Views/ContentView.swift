@@ -11,24 +11,16 @@ struct ContentView: View {
     
     @State private var user: User = User(id: UUID(), name: "Patrick Stewart", age: 81)
     @State private var messages: [Message] = []
+    @State private var messagesByPerson: [String: [Message]] = ["":[]]
     @State private var favourites: Favourites = []
     
     var body: some View {
         TabView {
             VStack {
                 HeaderView(name: user.name, age: user.age)
-                List(messages) { message in
-                    HStack {
-                        Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
-                            .foregroundColor(Color.yellow)
-                        VStack(alignment: .leading) {
-                            Text(message.message)
-                            Text(message.from)
-                                .font(.caption)
-                                .bold()
-                        }
-                    }
-                }
+                MessageListView(messagesByPerson: messagesByPerson,
+                                favourites: favourites)
+                
             }
             .tabItem {
                 Image(systemName: "message.fill")
@@ -70,10 +62,25 @@ struct ContentView: View {
                 async let messagesData: [Message] = URLSession.shared.decode(from: messagesURL)
                 async let favouritesData: Favourites = URLSession.shared.decode(from: favouritesURL)
                 
+                // Wait for user information
                 user = try await userData
+                
+                // Wait for messages information
                 messages = try await messagesData
                 print("There are \(messages.count) messages.")
+
+                // Now group messages by user
+                let unsortedMessages = messages
+                let messagesByPerson = Dictionary(grouping: unsortedMessages, by: { message in
+                    message.from
+                })
+                self.messagesByPerson = messagesByPerson
+                print("Messages, grouped by person who sent them:")
+                print(String(describing: messagesByPerson))
+                
+                // Wait for favourites data
                 favourites = try await favouritesData
+                
                 
             } catch {
                 print(error.localizedDescription)
