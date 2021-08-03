@@ -11,6 +11,7 @@ struct MessageListView: View {
     
     var messagesByPerson: [String: [Message]] = ["":[]]
     var favourites: Favourites = []
+    var favouritesOnly: Bool = false
     
     var body: some View {
         List {
@@ -18,24 +19,34 @@ struct MessageListView: View {
             ForEach(messagesByPerson.keys.sorted(), id:\.self) { person in
                 
                 // Get messages from this person
-                if let messagesFromPerson = messagesByPerson[person]! {
+                if let messagesFromPerson = messagesByPerson[person]!.filter({ element in
+                    if favouritesOnly {
+                        return favourites.contains(element.id)
+                    } else {
+                        return true
+                    }
+                }) {
                     
-                    // Show a header with the person's name
-                    Section(header: Text(person)) {
+                    if !messagesFromPerson.isEmpty {
                         
-                        // Show all messages from this person
-                        ForEach(messagesFromPerson) { message in
+                        // Show a header with the person's name
+                        Section(header: Text(person)) {
                             
-                            HStack {
-                                Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
-                                    .foregroundColor(Color.yellow)
-                                VStack(alignment: .leading) {
-                                    Text(message.message)
+                            // Show all messages from this person
+                            ForEach(messagesFromPerson) { message in
+                                
+                                HStack {
+                                    Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
+                                        .foregroundColor(Color.yellow)
+                                    VStack(alignment: .leading) {
+                                        Text(message.message)
+                                    }
                                 }
-                            }
 
+                            }
+                            
                         }
-                        
+
                     }
 
                 }

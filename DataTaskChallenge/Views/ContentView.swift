@@ -29,20 +29,9 @@ struct ContentView: View {
             
             VStack {
                 HeaderView(name: user.name, age: user.age)
-                List(messages.filter({ element in
-                    return favourites.contains(element.id)
-                })) { message in
-                    HStack {
-                        Image(systemName: favourites.contains(message.id) ? "star.fill" : "star")
-                            .foregroundColor(Color.yellow)
-                        VStack(alignment: .leading) {
-                            Text(message.message)
-                            Text(message.from)
-                                .font(.caption)
-                                .bold()
-                        }
-                    }
-                }
+                MessageListView(messagesByPerson: messagesByPerson,
+                                favourites: favourites,
+                                favouritesOnly: true)
 
             }
             .tabItem {
